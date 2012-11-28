@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="submenu">
+		<ui:include src="/template/submenuadm.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="menu">
+		<ui:include src="/template/menu.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="titulo">
+		<h1>Cadastro de Tipo de Conta</h1>
+	</ui:define>	
+	<ui:define name="content">
+		<h:form>
+			<h:panelGrid columns="3">
+				<p:outputLabel value="Descrição:" for="descricao" />
+				<p:inputText value="#{tipoContaBean.tipoConta.descricao}" id="descricao" required="true" label="Descrição" />
+				<p:message for="descricao" />
+				
+				<p:commandButton value="Salvar" icon="ui-icon-plus" action="#{tipoContaBean.salvar}" ajax="false" />
+				<p:commandButton value="Cancelar" icon="ui-icon-cancel" action="#{tipoContaBean.cancelar}" ajax="false" immediate="true" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition>
+		<ul class="nav nav-list">
+			<li class="nav-header">Menu</li>			
+			<li><h:outputLink value="#{facesContext.externalContext.requestContextPath}/sistema/adm/index.jsf"><h:outputText value="Administração"/></h:outputLink></li>			
+			<li><h:outputLink value="#{facesContext.externalContext.requestContextPath}/sistema/controle/index.jsf"><h:outputText value="Controle de Contas"/></h:outputLink></li>			
+			<li><h:outputLink value="#{facesContext.externalContext.requestContextPath}/sistema/relatorio/index.jsf"><h:outputText value="Relatórios"/></h:outputLink></li>
+		</ul>
+	</ui:composition>
+</h:body>
+</html>

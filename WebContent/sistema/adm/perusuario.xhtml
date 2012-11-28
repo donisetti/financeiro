@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="submenu">
+		<ui:include src="/template/submenuadm.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="menu">
+		<ui:include src="/template/menu.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="titulo">
+		<h1>Cadastro de Usuários</h1>
+	</ui:define>	
+	<ui:define name="content">		
+		<h:form>								
+			<p:dataTable value="#{usuarioBean.livres}" var="p" emptyMessage="Nenhum papel disponível!">
+				<f:facet name="header">Disponíveis</f:facet>
+				<p:column headerText="Papel">
+					<h:outputText value="#{p}" />
+					<p:spacer width="10px" />
+					<p:commandButton value="Adicionar" icon="ui-icon-plus" action="#{usuarioBean.addPapel}" ajax="false">
+						<f:setPropertyActionListener target="#{usuarioBean.papel}" value="#{p}" />
+					</p:commandButton>					
+				</p:column>				
+			</p:dataTable>			
+			<p:spacer width="30px" />			
+			<p:dataTable value="#{usuarioBean.usuario.permissao}" var="p" emptyMessage="Vincule um papel ao usuario!">
+				<f:facet name="header">Utilizadas</f:facet>
+				<p:column headerText="Papel">
+					<h:outputText value="#{p.papel}" />
+					<p:spacer width="10px" />					
+					<p:commandButton value="Remover" icon="ui-icon-trash" action="#{usuarioBean.remPermissao}" ajax="false">
+						<f:setPropertyActionListener target="#{usuarioBean.permissao}" value="#{p}" />
+					</p:commandButton>
+				</p:column>								
+			</p:dataTable>		
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

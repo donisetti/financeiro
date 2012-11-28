@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="submenu">
+		<ui:include src="/template/submenuadm.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="menu">
+		<ui:include src="/template/menu.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="titulo">
+		<h1>Tipo de Contas</h1>
+	</ui:define>	
+	<ui:define name="content">
+		<h:form>		
+			<p:dataTable value="#{tipoContaBean.tiposConta}" var="tc" emptyMessage="Não foi encontrado nenhum tipo de conta cadastrado!">
+				<p:column headerText="Código">
+					<h:outputText value="#{tc.id}" />
+				</p:column>
+				<p:column headerText="Descrição">
+					<h:outputText value="#{tc.descricao}" />
+				</p:column>
+				<p:column value="Ações">
+					<p:commandButton value="Editar" ajax="false" action="#{tipoContaBean.editar}" icon="ui-icon-bullet" >
+						<f:setPropertyActionListener target="#{tipoContaBean.tipoConta}" value="#{tc}" />
+					</p:commandButton>
+					<p:spacer width="10px" />
+					<p:commandButton value="Deletar" ajax="false" action="#{tipoContaBean.deletar}" icon="ui-icon-trash" >
+						<f:setPropertyActionListener target="#{tipoContaBean.tipoConta}" value="#{tc}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+			<p:commandButton value="Cadastrar Tipo Conta" icon="ui-icon-plus" action="#{tipoContaBean.cadastrar}" ajax="false" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

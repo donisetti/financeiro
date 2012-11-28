@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="submenu">
+		<ui:include src="/template/submenuadm.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="menu">
+		<ui:include src="/template/menu.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="content">
+		<h1>Cadastro de Usuários</h1>
+		<p:growl id="messageGrowl"/>
+		<h:form prependId="false">			
+			<p:dataTable value="#{usuarioBean.usuarios}" var="u" emptyMessage="Não foi encontrado nenhum usuário">
+				<h1>Cadastro de Usuários</h1>
+				<p:column headerText="Código">
+					<h:outputText value="#{u.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{u.nome}" />
+				</p:column>
+				<p:column headerText="Email">
+					<h:outputText value="#{u.email}" />
+				</p:column>					
+				<p:column headerText="Ações">
+					<p:commandButton value="Deteltar" icon="ui-icon-trash" action="#{usuarioBean.deletar}" ajax="false" >
+						<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{u}" />
+					</p:commandButton>
+					<p:spacer width="10px" />
+					<!-- 				
+					<p:commandButton value="Detalhes" icon="ui-icon-bullet" onclick="usuarioDetailDialogWidget.show();" update=":usuarioDetailDialogForm" >
+						<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{u}" />
+					</p:commandButton> 					
+					<p:spacer width="10px" />				
+					<p:commandButton value="Editar" icon="ui-icon-pencil" update=":usuarioUpdateDialogForm" onclick="usuarioUpdateDialogWidget.show();" >
+						<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{u}" />
+					</p:commandButton>
+					<p:spacer width="10px" />					
+					<p:commandButton value="Resetar Senha" icon="ui-icon-pencil" onclick="usuarioResetDialogWidget.show();" update=":usuarioResetDialogForm" >
+						<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{u}" />
+					</p:commandButton>
+					 --> 																										
+				</p:column>				 										
+			</p:dataTable>
+			<p:commandButton value="Cadastrar Usuário" icon="ui-icon-plus" action="#{usuarioBean.cadastrar}" ajax="false" />			
+		</h:form>			
+	</ui:define>
+</ui:composition>
+</html>
