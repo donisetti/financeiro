@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class TipoConta {
 	@Id
 	@Column(name = "id_tipo_conta")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String descricao;
 

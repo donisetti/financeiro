@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Estabelecimento {
 	@Id
 	@Column(name = "id_estabelcimento")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String nome;
 	private String telefone;

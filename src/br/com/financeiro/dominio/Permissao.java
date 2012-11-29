@@ -19,7 +19,7 @@ public class Permissao implements Serializable{
 	
 	@Id
 	@Column(name = "id_permissao")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")

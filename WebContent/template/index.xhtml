@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" lang="pt-br">
+
+<h:head>
+	<title><ui:insert name="title">
+			Sistema Financeiro
+		</ui:insert></title>
+	<!-- Bootstrap -->
+	<!-- <h:outputStylesheet library="css" name="bootstrap-responsive.css" /> 
+	<link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen" />-->
+	<h:outputStylesheet library="css" name="bootstrap.min.css"></h:outputStylesheet>
+	<h:outputStylesheet id="layoutCSS">
+		body {
+			padding-top: 60px;
+			/* 60px to make the container go all the way to the bottom of the topbar */
+		}
+	</h:outputStylesheet>
+
+	<h:outputStylesheet library="css" name="bootstrap-responsive.css" />
+</h:head>
+<body>
+	<p:layout fullPage="true">
+
+		<!-- 
+		<p:layoutUnit position="north" size="60">
+
+		</p:layoutUnit>
+		
+		<p:layoutUnit position="west" size="200">
+
+		</p:layoutUnit>
+ 		-->
+
+		<p:layoutUnit position="south" size="50">
+
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<ui:insert name="menu">
+				<p:menubar>
+					<p:menuitem value="Sistema Financeiro" url="/index.jsf" />
+					<p:menuitem value="Entrar" url="/sistema/index.jsf" />				
+				</p:menubar>			
+			</ui:insert>
+
+		</p:layoutUnit>
+
+	</p:layout>
+</body>
+</html>

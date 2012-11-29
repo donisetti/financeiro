@@ -19,7 +19,7 @@ public class TipoContaBean extends AbstractBean {
 	private TipoConta tipoConta;
 
 	public String cadastrar(){
-		resetar();
+		resetar();	
 		return "cadtipoconta";
 	}
 	

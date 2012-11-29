@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions" lang="pt-br">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="submenu">
+		<ui:include src="/template/submenucontrole.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="menu">
+		<ui:include src="/template/menu.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="titulo">
+		<h1>Cadastro de Contas</h1>
+	</ui:define>	
+	<ui:define name="content">
+		<h:form>
+			<h:panelGrid columns="2">				
+				<p:outputLabel value="Estabelecimento:" for="estabelecimento" />
+				<h:selectOneMenu id="estabelecimento" required="true" value="#{contaBean.conta.estabelecimento.id}">
+					<f:selectItem itemLabel="Selecione um Estabelecimento"/>
+					<f:selectItems value="#{estabelecimentoBean.estabelecimentos}" var="e" itemLabel="#{e.nome}" itemValue="#{e.id}"/>
+				</h:selectOneMenu>
+				
+				<p:outputLabel value="Tipo Conta:" for="tipoConta" />
+				<h:selectOneMenu id="tipoConta" required="true" value="#{contaBean.conta.tipoConta.id}">
+					<f:selectItem itemLabel="Selecione um Tipo"/>
+					<f:selectItems value="#{tipoContaBean.tiposConta}" var="t" itemLabel="#{t.descricao}" itemValue="#{t.id}"/>
+				</h:selectOneMenu>
+				
+				<p:outputLabel value="Valor:" for="valor" />
+				<pe:inputNumber id="valor" value="#{contaBean.conta.valor}" decimalSeparator="." thousandSeparator="," decimalPlaces="2" />
+				
+				<p:outputLabel value="Data:" for="data" />
+				<p:inputMask mask="99/99/9999" id="data" value="#{contaBean.conta.data}" />
+				
+				<p:outputLabel value="Operação:" for="operacao" />
+				<h:selectOneMenu id="operacao" required="true" value="#{contaBean.conta.operacao}" >
+					<f:selectItem itemLabel="Selecione uma Operação"/>
+					<f:selectItems value="#{contaBean.operacoes}" var="o" itemLabel="#{o}" itemValue="#{o}" />
+				</h:selectOneMenu>		
+				
+				<p:commandButton value="Salvar" icon="ui-icon-plus" action="#{contaBean.salvar}" ajax="false" />
+				<p:commandButton value="Cancelar" icon="ui-icon-cancel" action="#{contaBean.cancelar}" ajax="false" immediate="true" />								
+			</h:panelGrid>
+		</h:form>		
+	</ui:define>
+</ui:composition>
+</html>
