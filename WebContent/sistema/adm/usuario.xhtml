@@ -28,6 +28,10 @@
 					<h:outputText value="#{u.email}" />
 				</p:column>
 				<p:column headerText="Ações">
+					<p:commandButton value="Editar" icon="ui-icon-pencil" action="#{usuarioBean.editar}" ajax="false">
+						<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{u}" />
+					</p:commandButton>
+					<p:spacer width="10px" />
 					<p:commandButton value="Deteltar" icon="ui-icon-trash" action="#{usuarioBean.deletar}" ajax="false">
 						<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{u}" />
 					</p:commandButton>

@@ -50,9 +50,8 @@ public class Parcela {
 
 	@Override
 	public String toString() {
-		return "Parcela [id=" + id + ", conta=" + conta + ", parcela="
-				+ parcela + ", data=" + data + ", valor="
-				+ valor + "]";
+		return "Parcela [id=" + id + ", parcela=" + parcela + ", data=" + data
+				+ ", valor=" + valor + "]";
 	}
 
 	public long getId() {

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pe="http://primefaces.org/ui/extensions" lang="pt-br">
+
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="submenu">
+		<ui:include src="/template/submenucontrole.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="menu">
+		<ui:include src="/template/menu.xhtml"></ui:include>
+	</ui:define>
+	<ui:define name="titulo">
+		<h1>Parcelamento de Contas a Pagar</h1>
+	</ui:define>	
+	<ui:define name="content">
+		<h:form prependId="false" id="form">
+			<p:growl showDetail="true" />		
+			<h:panelGrid columns="2">
+				<h:panelGrid columns="2">
+					<f:facet name="header">
+						Dados da Conta
+					</f:facet>			
+					<p:outputLabel for="usuario" value="Usuário:" />
+					<p:inputText id="usuario" value="#{contaBean.conta.usuario.nome}" disabled="true" />
+					
+					<p:outputLabel for="estabelecimento" value="Estabelecimento:" />
+					<p:inputText id="estabelecimento" value="#{contaBean.conta.estabelecimento.nome}" disabled="true" />
+					
+					<p:outputLabel for="datac" value="Data:" />
+					<p:inputText id="datac" value="#{contaBean.conta.data}" disabled="true" >
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</p:inputText>
+					
+					<p:outputLabel for="valorc" value="Valor:" />
+					<p:inputText id="valorc" value="#{contaBean.conta.valor}" disabled="true" >
+						<f:convertNumber pattern="#,###,##0.00"/>
+					</p:inputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+				<f:facet name="header">
+					Parcelas Cadastradas
+				</f:facet>			
+					<p:dataTable value="#{contaBean.conta.parcelas}" var="p" emptyMessage="Nenhum parcela cadastrado para essa conta." id="tabela">
+						<p:column headerText="Parcela">
+							<h:outputText value="#{p.parcela}" />
+						</p:column>
+						<p:column headerText="Data">
+							<h:outputText value="#{p.data}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</h:outputText>
+						</p:column>
+						<p:column headerText="Valor">
+							<h:outputText value="#{p.valor}" >
+								<f:convertNumber pattern="#,###,##0.00"/>
+							</h:outputText>
+						</p:column>
+						<p:column headerText="Ações">
+							<p:commandButton value="Deletar" icon="ui-icon-trash" action="#{contaBean.deleteParcela}" ajax="false">
+								<f:setPropertyActionListener target="#{contaBean.parcela}" value="#{p}" />
+							</p:commandButton>						
+						</p:column>
+					</p:dataTable>
+				</h:panelGrid>
+			</h:panelGrid>		
+			<h:panelGrid columns="2" id="addParcela">
+				<f:facet name="header">
+					Cadastro de Parcela
+				</f:facet>
+				<p:outputLabel for="data" value="Data:" />
+				<p:calendar id="data" value="#{contaBean.parcela.data}" locale="pt" />
+				
+				<p:outputLabel for="valor" value="Valor:" />				
+				<pe:inputNumber id="valor" value="#{contaBean.parcela.valor}"
+					decimalSeparator="." thousandSeparator="," decimalPlaces="2" />
+				
+				<p:commandButton value="Adicionar" actionListener="#{contaBean.addParcela}" update="form tabela addParcela" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

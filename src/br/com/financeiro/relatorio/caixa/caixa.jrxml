@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="caixa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d45252a7-f607-4e92-84ed-9e211aa16828">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="PathRelatorioCaixa" class="java.lang.String"/>
+	<parameter name="IdUsuario" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT  CONTA.ID_CONTA,
+	CONTA.VALOR,
+	CONTA.DATA,
+	CONTA.OPERACAO,
+	USUARIO.NOME AS USUARIO,
+	ESTABELECIMENTO.NOME AS ESTABELECIMENTO,
+	TIPOCONTA.DESCRICAO AS TIPO_CONTA
+FROM CONTA
+INNER JOIN USUARIO ON (USUARIO.ID_USUARIO = CONTA.ID_USUARIO)
+INNER JOIN TIPOCONTA ON (TIPOCONTA.ID_TIPO_CONTA = CONTA.ID_TIPO_CONTA)
+INNER JOIN ESTABELECIMENTO ON (ESTABELECIMENTO.ID_ESTABELCIMENTO = CONTA.ID_ESTABELECIMENTO)
+WHERE CONTA.ID_USUARIO = $P!{IdUsuario}
+ORDER BY CONTA.ID_CONTA]]>
+	</queryString>
+	<field name="id_conta" class="java.lang.Long"/>
+	<field name="valor" class="java.lang.Double"/>
+	<field name="data" class="java.sql.Timestamp"/>
+	<field name="operacao" class="java.lang.String"/>
+	<field name="usuario" class="java.lang.String"/>
+	<field name="estabelecimento" class="java.lang.String"/>
+	<field name="tipo_conta" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="248c2479-3130-4956-8665-66d6a835d557" x="0" y="0" width="555" height="26"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Caixa]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f5591aa8-83c4-4f62-95c0-3f6aedadbe41" x="0" y="0" width="35" height="20"/>
+				<textElement/>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5c3ab55c-fa02-41ab-9da8-62b5b6f69d01" x="43" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Estabelecimento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="daf6958e-c523-4e24-baa5-6fcb175ea8e2" x="245" y="0" width="81" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tipo Conta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d8b432b2-edcf-4432-9af7-a3ee838606bf" x="338" y="0" width="49" height="20"/>
+				<textElement/>
+				<text><![CDATA[Operação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9d8cbda2-7b35-45ec-958f-e2084fa8e7bc" x="397" y="0" width="56" height="20"/>
+				<textElement/>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e0aaea8c-ae4a-406f-bff7-49ef4d3caf88" x="528" y="0" width="27" height="20"/>
+				<textElement/>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b1f470d-db80-4383-a101-92064f347c9b" x="153" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Usuário]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ac7d35be-fe75-43d6-984e-32237a373bab" x="0" y="0" width="35" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{id_conta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ef21be49-3047-4259-8ee4-6e2567c4970c" x="43" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estabelecimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cba4d470-4fe8-400f-8036-0c27d4eac30c" x="245" y="0" width="81" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{tipo_conta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ebfc0faf-d71b-42af-8bb4-379bcb3afa5f" x="338" y="1" width="49" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{operacao}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="79851e97-35d6-4d7e-9be5-973ef1c3193a" x="397" y="1" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,###,##0.00">
+				<reportElement uuid="b6069d20-3485-457e-bbd7-bc95240dd0d1" x="464" y="0" width="91" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5ba90860-0f8c-498d-9cdb-1ccadee8b2b6" x="153" y="1" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

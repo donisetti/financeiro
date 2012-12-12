@@ -65,7 +65,7 @@ public class Conta {
 	public String toString() {
 		return "Conta [id=" + id + ", usuario=" + usuario + ", tipoConta="
 				+ tipoConta + ", estabelecimento=" + estabelecimento
-				+ ", parcelas=" + parcelas + ", valor=" + valor + ", data="
+				+ ", valor=" + valor + ", data="
 				+ data + ", operacao=" + operacao + "]";
 	}
 
@@ -101,7 +101,7 @@ public class Conta {
 		this.estabelecimento = estabelecimento;
 	}
 
-	public List<Parcela> getParcelas() {
+	public List<Parcela> getParcelas() {		
 		return parcelas;
 	}
 

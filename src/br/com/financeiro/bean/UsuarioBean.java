@@ -43,6 +43,10 @@ public class UsuarioBean extends AbstractBean implements Serializable{
 		return "cadusuario";
 	}
 	
+	public String editar(){
+		return "cadusuario";
+	}
+	
 	public String cancelar(){
 		resetar();
 		return "usuario";

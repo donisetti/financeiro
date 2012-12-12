@@ -28,11 +28,11 @@
 					<h:outputText value="#{e.telefone}" />
 				</p:column>
 				<p:column headerText="Ações">
-					<p:commandButton value="Editar" icon="ui-icon-bullet" action="#{estabelecimentoBean.editar}" ajax="false">
+					<p:commandButton value="Editar" icon="ui-icon-pencil" action="#{estabelecimentoBean.editar}" ajax="false">
 						<f:setPropertyActionListener target="#{estabelecimentoBean.estabelecimento}" value="#{e}" />
 					</p:commandButton>
 					<p:spacer width="10px" />
-					<p:commandButton value="Permissões" icon="ui-icon-trash" action="#{estabelecimentoBean.deletar}" ajax="false">
+					<p:commandButton value="Deletar" icon="ui-icon-trash" action="#{estabelecimentoBean.deletar}" ajax="false">
 						<f:setPropertyActionListener target="#{estabelecimentoBean.estabelecimento}" value="#{e}" />
 					</p:commandButton>					
 				</p:column>

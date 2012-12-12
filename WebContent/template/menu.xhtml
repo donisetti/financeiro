@@ -1,25 +1,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- 
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui" lang="pt-br">
- 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" lang="pt-br">
+
 <h:body>
-    <ui:composition>   
-		<h:outputLink styleClass="brand" value="#{facesContext.externalContext.requestContextPath}/sistema/index.jsf"><h:outputText value="Sistema Financeiro"/></h:outputLink>
-		<div class="nav-collapse collapse">         		
-			<p class="navbar-text pull-right">				
-				Logado como #{usuarioLogadoBean.usuario.nome} | <h:outputLink value="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout"><h:outputText value="Sair"/></h:outputLink>
-			</p>			
-			<ul class="nav">
-				<li><h:outputLink value="#{facesContext.externalContext.requestContextPath}/sistema/adm/index.jsf"><h:outputText value="Administração"/></h:outputLink></li>			
-				<li><h:outputLink value="#{facesContext.externalContext.requestContextPath}/sistema/controle/index.jsf"><h:outputText value="Controle de Contas"/></h:outputLink></li>			
-				<li><h:outputLink value="#{facesContext.externalContext.requestContextPath}/sistema/relatorio/index.jsf"><h:outputText value="Relatórios"/></h:outputLink></li>
-			</ul>        
-		</div>	             		               
-    </ui:composition>
+	<ui:composition>
+		<h:form>
+			<p:menubar>
+				<p:menuitem value="Sistema Financeiro" url="/sistema/index.jsf" />
+				<p:submenu label="Administração">
+					<p:menuitem value="Cadastro de Usuários" url="/sistema/adm/usuario.jsf" />
+					<p:menuitem value="Cadastro de Tipo de Contas" url="/sistema/adm/tipoconta.jsf" />
+				</p:submenu>
+				<p:submenu label="Controle de Contas">
+					<p:menuitem value="Cadastro de Contas a Receber" action="#{contaBean.novaCredito}" /> <!-- url="/sistema/controle/cadconta.jsf?operacao=CREDITO" -->
+					<p:menuitem value="Cadastro de Contas a Pagar" action="#{contaBean.novaDebito}" /> <!-- url="/sistema/controle/cadconta.jsf?operacao=DEBITO" -->
+					<p:menuitem value="Parcelamento de Contas a Pagar" action="#{contaBean.listaconta}" /> <!-- url="/sistema/controle/listaconta.jsf" -->				
+					<p:menuitem value="Cadastro de Estabelecimento" url="/sistema/controle/estabelecimento.jsf" />
+				</p:submenu>
+				<p:submenu label="Relatórios">
+					<p:menuitem value="Relatório de Caixa" url="/sistema/relatorio/caixa" />
+					<p:menuitem value="Relatório de Contas a Receber" url="/sistema/relatorio/index.jsf" />
+					<p:menuitem value="Relatório de Contas a Pagar" url="/sistema/relatorio/index.jsf" />
+				</p:submenu>					
+				<p:menuitem value="Sair" url="/j_spring_security_logout" icon="ui-icon-close" />
+				<p:menuitem value="Logado como #{usuarioLogadoBean.usuario.nome}" url="#" />
+				 
+				 <!-- 
+				<f:facet name="options">							
+						<h:outputText value="Logado como #{usuarioLogadoBean.usuario.nome}" />
+						<h:outputLink value="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">Sair</h:outputLink>													
+				</f:facet>
+				 -->			
+			</p:menubar>
+		</h:form>
+	</ui:composition>
 </h:body>
 </html>

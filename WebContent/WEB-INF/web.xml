@@ -51,4 +51,30 @@
 		<filter-name>Character Encoding Filter</filter-name>
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bootstrap</param-value>
+	</context-param>
+
+	<!-- Config WS CXF -->
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	<!-- Relatotio -->
+	<servlet>
+		<servlet-name>RelatorioCaixaServlet</servlet-name>
+		<servlet-class>br.com.financeiro.relatorio.caixa.RelatorioCaixa</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RelatorioCaixaServlet</servlet-name>
+		<url-pattern>/sistema/relatorio/caixa</url-pattern>
+	</servlet-mapping>
+
 </web-app>
